@@ -1,0 +1,61 @@
+.lt{
+  float: left;
+}
+.rt{
+  float: right;
+}
+.main-wrapper{
+  padding-top: 60px;
+}
+.navbar{
+  margin-bottom: 0;
+}
+.map-area{
+  border:1px solid #e7e7e7;
+}
+.filter-area{
+  /*border:1px solid #e7e7e7;
+  height: 600px;*/
+}
+.padding-0-right{
+    padding-right:0;
+}
+.padding-0-left{
+    padding-left:0;
+}
+.panel-group{
+  margin-bottom: 0;
+}
+.panel-heading {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.panel-group .panel{
+  border-radius: 0;
+}
+.vehicle-select .v-dropdown{
+  width: 100%;
+}
+.vehicle-select .dropdown-menu{
+  width: 100%;
+}
+.vehicle-details{
+  margin-top: 10px;
+  border: 1px solid #ccc;
+
+}
+.car-icon{
+  margin: 10px;
+}
+.car-dets{
+  margin-top: 5px;
+}
+.bg-grey{
+  color: #ccc;
+}
+.from-div, .to-div{
+  margin-top: 10px;
+}
+.go-btn{
+  margin-top: 10px;
+}

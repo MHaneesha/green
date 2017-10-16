@@ -1,0 +1,18 @@
+[
+    {
+        "car_name": "Vitara",
+        "car_id": "1"
+    },
+    {
+        "car_name": "Revo Maruti",
+        "car_id": "2"
+    },
+    {
+        "car_name": "Renault",
+        "car_id": "3"
+    },
+    {
+        "car_name": "Chevrolet",
+        "car_id": "4"
+    }
+]
