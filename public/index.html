@@ -12,8 +12,7 @@
 
     <!-- Just needed for IE -->
     <script src="bower_components/es6-promise/dist/es6-promise.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGn3obdlYMUPXCoR3uJhfUTqj1l1NyFiI">
-    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBGn3obdlYMUPXCoR3uJhfUTqj1l1NyFiI"></script>
     <!-- Requires Webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
     <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
@@ -34,6 +33,11 @@
     </div><!-- /.container-fluid -->
   </nav>
   <div class="main-wrapper container-fluid" ui-view></div>
+  <nav class="footer-div navbar navbar-default navbar-fixed-bottom" role="navigation">
+    <div class="container-fluid">
+      <span>&copy; genpact</span>
+    </div>
+  </nav>
 </body>
 <script>
     // IE11 workaround: We can't rely on IE's load order for scripts that are loaded outside of require.js (might

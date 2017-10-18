@@ -1,0 +1,270 @@
+<div class="" ng-init="initAutoComplete()">
+  <div class="filter-area">
+    <h4>Search</h4>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="dropdown vehicle-select">
+          <button class="btn btn-default dropdown-toggle v-dropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Select your vehicle
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu car-dropdown" aria-labelledby="dropdownMenu1">
+            <li ng-repeat="car in carsList">
+              <a href="#" ng-click="getCarsDetails(car.car_id)">{{car.car_name}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="dropdown vehicle-select">
+          <button class="btn btn-default dropdown-toggle d-dropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Select your driver
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu driver-dropdown" aria-labelledby="dropdownMenu1">
+            <li ng-repeat="driver in driversList">
+              <a href="#" ng-click="getDriverDetails(driver.driver_id)">{{driver.driver_name}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <div class="from-div">
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">From</span>
+            <input id="origin-input" type="text" class="form-control controls" placeholder="" aria-describedby="basic-addon1">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <div class="to-div">
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">To</span>
+            <input id="destination-input" type="text" class="form-control controls" placeholder="" aria-describedby="basic-addon1">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <div class="to-div">
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
+            <input id="zipcode-input" type="text" ng-model="zipCode" class="form-control controls" placeholder="" aria-describedby="basic-addon1">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="go-btn clearfix">
+          <button type="button" name="button" class="btn btn-success rt" ng-click="getAnalytics()">Go</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="analytic-area" ng-show="showAnalytics">
+    <h4>Travel Analytics</h4>
+    <div class="row">
+      <div class="col-md-6 col-sm-12 padding-0-right">
+        <div class="vehicle-details">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="car-icon">
+                <i class="fa fa-car fa-5x bg-grey"></i>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="car-dets">
+                <!-- <p><span>Description: </span><span>{{carDetails.description}}</span></p> -->
+                <p><span>Model: </span><span>{{carDetails.car_model}}</span></p>
+                <p><span>Mileage: </span><span>{{carDetails.mileage}}</span></p>
+                <p><span>Type: </span><span>{{carDetails.type}}</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="vehicle-details">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="car-icon">
+                <i class="fa fa-user fa-5x bg-grey"></i>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="car-dets">
+                <!-- <p><span>Description: </span><span>{{carDetails.description}}</span></p> -->
+                <p><span>Descrption: </span><span>{{driverDetails.description}}</span></p>
+                <p><span>Can drive: </span><span>{{driverDetails.can_drive}}</span></p>
+                <p><span>Rating: </span><span>{{driverDetails.rating}}</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5 col-sm-12 padding-0-right">
+        <div class="row data-div">
+          <div class="col-sm-4 padding-0-right">
+              <span class="text-bold">Origin :</span>
+          </div>
+          <div class="col-sm-8 padding-0-right">
+              <span>{{analyticsData.distanceMatrix.origin}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 col-sm-12 padding-0-right">
+        <div class="row data-div">
+          <div class="col-sm-4 padding-0-right">
+              <span class="text-bold">Destination :</span>
+          </div>
+          <div class="col-sm-8 padding-0-right">
+              <span>{{analyticsData.distanceMatrix.destination}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-12 clearfix">
+        <button type="button" name="button" class="btn btn-success dir-btn rt" ng-click="initMap(); getDirections()">Get Directions</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-sm-6 padding-0-right">
+        <div class="data-div">
+          <i class="fa fa-5x fa-sun-o bg-grey"></i>
+          <p>24 <sup>&deg;C</sup></p>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6 padding-0-right">
+        <div class="data-div">
+          <i class="fa fa-5x fa-battery-three-quarters bg-grey"></i>
+          <p>2 hours 23 minutes</p>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6 padding-0-right">
+        <div class="data-div">
+          <i class="fa fa-5x fa-road bg-grey"></i>
+          <p>{{analyticsData.distanceMatrix.distance}}</p>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6 padding-0-right">
+        <div class="data-div">
+          <i class="fa fa-5x fa-clock-o bg-grey"></i>
+          <p>{{analyticsData.distanceMatrix.duration}}</p>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6 padding-0-right">
+        <div class="data-div">
+          <i class="fa fa-5x fa-tint bg-grey"></i>
+          <p>{{analyticsData.stationStats.stationCount}}</p>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6">
+        <div class="data-div">
+          <i class="fa fa-5x fa-plug bg-grey"></i>
+          <p>{{analyticsData.stationStats.evPosts}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="map-area" ng-show="directionsRequest">
+    <div class="clearfix">
+      <h4 class="lt">View Directions</h4>
+      <button type="button" name="button" class="btn rt" ng-click="closeMap()"><i class="fa fa-times" ></i> Close</button>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="map" style="height:300px"></div>
+      </div>
+    </div>
+  </div>
+  <div class="station-area" ng-show="showAnalytics">
+    <h4>Stations</h4>
+    <table class="table table-hover">
+      <thead>
+        <th>Station Name</th>
+        <th>City</th>
+        <th>Phone</th>
+        <th>Access Hours</th>
+      </thead>
+      <tbody ng-repeat="station in stationData">
+        <tr data-toggle="collapse" data-target="#data{{$index + 1}}">
+          <td>{{station.stationName}}</td>
+          <td>{{station.city}}</td>
+          <td>{{station.stationPhone}}</td>
+          <td>{{station.accessHours}}</td>
+        </tr>
+        <tr>
+          <td class="hiddenRow" colspan="4">
+            <div id="data{{$index + 1}}" class="collapse station-details">
+              <div class="row">
+                <div class="col-md-6 col-sm-12">
+                  <div class="row margin-5-top">
+                    <div class="col-sm-4 padding-0-right">
+                      <span class="text-bold">Station Name</span>
+                    </div>
+                    <div class="col-sm-4 padding-0-right">
+                      <span>: {{station.stationName}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4 padding-0-right">
+                      <span class="text-bold">Station ID</span>
+                    </div>
+                    <div class="col-sm-4 padding-0-right">
+                      <span>: {{station.stationID}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4 padding-0-right">
+                      <span class="text-bold">Station Address</span>
+                    </div>
+                    <div class="col-sm-4 padding-0-right">
+                      <span>: {{station.streetAddress + ',' + station.city + ','+ station.state + ',' + station.zipCode}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <p class="text-bold">Connector Types</p>
+                    </div>
+                    <div class="col-sm-12">
+                      <table class="table table-bordered">
+                        <thead>
+                          <th>#</th>
+                          <th>Connector Id</th>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="connector in station.evConnectorTypes">
+                            <td>{{$index+1}}</td>
+                            <td>{{connector}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <p class="text-bold">Pumps</p>
+                  <table class="table table-bordered">
+                    <thead>
+                      <th>#</th>
+                      <th>Pump Id</th>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="pump in station.evPosts">
+                        <td>{{$index+1}}</td>
+                        <td>{{pump}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

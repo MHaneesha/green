@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row" ng-init="initAutoComplete()">
   <div class="col-md-9 col-sm-12 padding-0-right">
     <div class="map-area">
-      <div id="map" style="height:500px"></div>
+      <div id="map" style="height:560px"></div>
     </div>
   </div>
   <div class="col-md-3 col-sm-12">
@@ -47,18 +47,18 @@
                       <div class="from-div">
                         <div class="input-group">
                           <span class="input-group-addon" id="basic-addon1">From</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                          <input id="origin-input" type="text" ng-model="origInput" ng-change="getPlaces()" class="form-control controls" placeholder="" aria-describedby="basic-addon1">
                         </div>
                       </div>
                       <div class="to-div">
                         <div class="input-group">
                           <span class="input-group-addon" id="basic-addon1">To</span>
-                          <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                          <input id="destination-input" type="text" ng-model="destInput" ng-change="getPlaces()" class="form-control controls" placeholder="" aria-describedby="basic-addon1">
                         </div>
                       </div>
-                      <div class="go-btn clearfix">
+                      <!-- <div class="go-btn clearfix">
                         <button type="button" name="button" class="btn btn-success rt">Search</button>
-                      </div>
+                      </div> -->
                     </div>
                 </div>
             </div>

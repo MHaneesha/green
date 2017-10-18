@@ -18,9 +18,31 @@ define(['angular', './sample-module'], function (angular, module) {
             });
         }
 
+        var getDriverInfo = function (driver_id) {
+            return $http.get('/sample-data/driver-details-'+driver_id+'.json', {
+              'Content-Type' : 'application/json'
+            });
+        }
+
+        var getDriversList = function () {
+            return $http.get('/sample-data/drivers-list.json', {
+              'Content-Type' : 'application/json'
+            });
+        }
+
+        var getAnalyticsData = function (origin, dest, car_id, driver_id, zip) {
+            debugger
+            return $http.get('/sample-data/analytic-data.json', {
+              'Content-Type' : 'application/json'
+            });
+        }
+
         return {
           getCarInfo : getCarInfo,
-          getCarsList : getCarsList
+          getCarsList : getCarsList,
+          getDriverInfo : getDriverInfo,
+          getDriversList : getDriversList,
+          getAnalyticsData : getAnalyticsData
         };
     }]);
 });

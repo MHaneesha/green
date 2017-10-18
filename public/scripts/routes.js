@@ -18,10 +18,15 @@ define(['angular', 'angular-ui-router'], function(angular) {
                 url: '/mapview',
                 templateUrl: 'views/mapview.html',
                 controller: 'DashboardsCtrl'
+            })
+            .state('analyticview', {
+                url: '/analyticview',
+                templateUrl: 'views/analytic-view.html',
+                controller: 'AnalyticsCtrl'
             });
 
 
-        $urlRouterProvider.otherwise('mapview');
+        $urlRouterProvider.otherwise('analyticview');
 
     }]);
 });
